@@ -1,0 +1,5 @@
+#Ignore the HanoiTower compiled file
+_Recursion_week04_/Recursion_HanoiTower
+
+# Ignore VS Code settings
+.vscode/
