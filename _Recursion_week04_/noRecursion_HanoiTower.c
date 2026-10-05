@@ -15,13 +15,16 @@ int HanoiTower (int n, char start, char destination, char transit){
         Type currentTask = top(&task);
         pop(&task);
 
-        if(currentTask.n == 1) {
+        if(currentTask.n == 1 || currentTask.n < 0) {
+            int diskNo = (currentTask.n < 0) ? -currentTask.n : 1;
+
+            
             printf ("Move disk %d from %c to %c\n",
-                currentTask.n, currentTask.start, currentTask.destination);
+                diskNo, currentTask.start, currentTask.destination);
         }
         else {
             Type step1 = {currentTask.n - 1, currentTask.start, currentTask.transit, currentTask.destination};
-            Type step2 = {1, currentTask.start, currentTask.destination, currentTask.transit};
+            Type step2 = {-currentTask.n, currentTask.start, currentTask.destination, currentTask.transit};
             Type step3 = {currentTask.n - 1, currentTask.transit, currentTask.destination, currentTask.start};
             push(&task, step3);
             push(&task, step2);
