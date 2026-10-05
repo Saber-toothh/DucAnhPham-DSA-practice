@@ -51,4 +51,7 @@ Ta coi mỗi phần từ trong Stack là một bước độc lập, gồm 4 th�
         + Bước 1: Chuyển n-1 đĩa từ start đến transit
         + Bước 2: Chuyển 1 đĩa từ start đến destination
         + Bước 3: CHuyển n-1 đĩa từ transit đến destination
-        + Đẩy vào Stack theo thứ tự: Bước 3 -> Bước 2 -> Bước 1
+        + Đẩy vào Stack theo thứ tự: Bước 3 -> Bước 2 -> Bước 1s
+
+### 2.3 Test cases
+Giống 1.2
