@@ -15,7 +15,7 @@ void quickSort (int A[], int first, int last)
     int i = first+1;
     int j = last;
     while (i <= j){
-        while (i <= last && A[i] < A[pivot]) i++;
+        while (i <= last && A[i] <= A[pivot]) i++;
         while (j >= first && A[j] > A[pivot]) j--;
         
         if (i < j) {
