@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define N 12
+#define N 13
 
 void swap (int A[], int i, int j) {
     int temp = A[i];
@@ -26,13 +26,4 @@ void quickSort (int A[], int first, int last)
 
     quickSort (A, first, j-1);
     quickSort (A, j+1, last);
-}
-
-int main(){
-    int A[N] = {75, 70, 65, 84, 98,78, 100, 93, 78, 98, 81, 84};
-    quickSort (A, 0, N-1);
-    for (int i = 0; i <N ; i++){
-        printf("%d\t", A[i]);
-    }
-    return 0;
 }
