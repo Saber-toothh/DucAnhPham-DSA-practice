@@ -48,3 +48,59 @@ Output: A = [0, 0, 1, 1, 2, 2]
 - TC7: 1 phần tử
 Input: A = [2]
 Output: A = [2]
+
+## Ex10. Inplace merge two sorted arrays
+Given two sorted arrays, X[] and Y[] of size m and n each, merge elements of X[] with elements of array Y[] by maintaining the sorted order, i.e., fill X[] with the first m smallest elements and fill Y[] with remaining elements.
+Do the conversion in-place and without using any other data structure.
+
+For example,
+
+Input: X[] = { 1, 4, 7, 8, 10 } Y[] = { 2, 3, 9 } 
+Output: X[] = { 1, 2, 3, 4, 7 } Y[] = { 8, 9, 10 }
+
+1. Ý tưởng
+- Ta có thể thấy, sau khi đã được sắp xếp, phần tử đầu tiên của mảng Y lớn hơn tất cả các phần tử của mảng X. 
+- Vì vậy, để giải quyết bài toán, ta chỉ việc so sánh từng phần tử X[i] của X với phần tử đầu tiên của Y (chừng nào Y[0] chưa lớn hơn X[m-1] thì bài toán chưa được giải quyết)
+    + Nếu X[i] > Y[0] -> đổi chỗ X[i] và Y[0] -> đưa 2 phần tử này về đúng vị trí trong mỗi mảng để giữ cho các mảng luôn trong trạng thái 'đã được sắp xếp'.
+(Lưu ý: Thực chất chỉ cần đưa Y[0] sau khi đổi về đúng vị trí, vì không thể xảy ra trường hợp X[a]>Y[0] với a < i vì đã duyệt qua a trước i rồi, chắc chắn X[a] < Y[0])
+
+2. Test cases
+TC1:
+Input:
+X = [1, 4, 7, 8, 10]
+Y = [2, 3, 9]
+Output:
+X = [1, 2, 3, 4, 7]
+Y = [8, 9, 10]
+
+TC2:
+Input:
+X = [7, 8, 9]
+Y = [1, 2, 3]
+Output:
+X = [1, 2, 3]
+Y = [7, 8, 9]
+
+TC3: Có chứa các phần tử trùng lặp
+Input:
+X = [1, 3, 3, 5]
+Y = [3, 4, 5]
+Output:
+X = [1, 3, 3, 3]
+Y = [4, 5, 5]
+
+TC4: Mảng Y chỉ có 1 phần tử
+Input:
+X = [2, 4, 6, 8]
+Y = [5]
+Output:
+X = [2, 4, 5, 6]
+Y = [8]
+
+TC5: Mảng có chứa số âm
+Input:
+X = [-5, -1, 4, 7]
+Y = [-3, 2, 6]
+Output:
+X = [-5, -3, -1, 2]
+Y = [4, 6, 7]
