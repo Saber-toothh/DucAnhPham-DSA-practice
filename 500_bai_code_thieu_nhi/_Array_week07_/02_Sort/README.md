@@ -22,32 +22,32 @@ Output: { 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2 }
 2. Test cases
 
 - TC1: 
-Input: A = [2, 0, 2, 1, 1, 0]
-Output: A = [0, 0, 1, 1, 2, 2]
+Input: A = {2, 0, 2, 1, 1, 0}
+Output: A = {0, 0, 1, 1, 2, 2}
 
 - TC2: N lẻ
-Input: A = [1, 2, 0, 1, 2, 0, 1]
-Output: A = [0, 0, 1, 1, 1, 2, 2]
+Input: A = {1, 2, 0, 1, 2, 0, 1}
+Output: A = {0, 0, 1, 1, 1, 2, 2}
 
 - TC3: không có số 1
-Input: A = [2, 0, 2, 0, 0]
-Output: A = [0, 0, 0, 2, 2]
+Input: A = {2, 0, 2, 0, 0}
+Output: A = {0, 0, 0, 2, 2}
 
 - TC4: không có số 0
-Input: A = [2, 1, 2, 2, 1]
-Output: A = [1, 1, 2, 2, 2]
+Input: A = {2, 1, 2, 2, 1}
+Output: A = {1, 1, 2, 2, 2}
 
 - TC5:
-Input: A = [1, 1, 1, 1, 1]
-Output: A = [1, 1, 1, 1, 1]
+Input: A = {1, 1, 1, 1, 1}
+Output: A = {1, 1, 1, 1, 1}
 
 - TC6: 
-Input: A = [0, 0, 1, 1, 2, 2]
-Output: A = [0, 0, 1, 1, 2, 2]
+Input: A = {0, 0, 1, 1, 2, 2}
+Output: A = {0, 0, 1, 1, 2, 2}
 
 - TC7: 1 phần tử
-Input: A = [2]
-Output: A = [2]
+Input: A = {2}
+Output: A = {2}
 
 ## Ex10. Inplace merge two sorted arrays
 Given two sorted arrays, X[] and Y[] of size m and n each, merge elements of X[] with elements of array Y[] by maintaining the sorted order, i.e., fill X[] with the first m smallest elements and fill Y[] with remaining elements.
@@ -67,40 +67,84 @@ Output: X[] = { 1, 2, 3, 4, 7 } Y[] = { 8, 9, 10 }
 2. Test cases
 TC1:
 Input:
-X = [1, 4, 7, 8, 10]
-Y = [2, 3, 9]
+X = {1, 4, 7, 8, 10}
+Y = {2, 3, 9}
 Output:
-X = [1, 2, 3, 4, 7]
-Y = [8, 9, 10]
+X = {1, 2, 3, 4, 7}
+Y = {8, 9, 10}
 
 TC2:
 Input:
-X = [7, 8, 9]
-Y = [1, 2, 3]
+X = {7, 8, 9}
+Y = {1, 2, 3}
 Output:
-X = [1, 2, 3]
-Y = [7, 8, 9]
+X = {1, 2, 3}
+Y = {7, 8, 9}
 
 TC3: Có chứa các phần tử trùng lặp
 Input:
-X = [1, 3, 3, 5]
-Y = [3, 4, 5]
+X = {1, 3, 3, 5}
+Y = {3, 4, 5}
 Output:
-X = [1, 3, 3, 3]
-Y = [4, 5, 5]
+X = {1, 3, 3, 3}
+Y = {4, 5, 5}
 
 TC4: Mảng Y chỉ có 1 phần tử
 Input:
-X = [2, 4, 6, 8]
-Y = [5]
+X = {2, 4, 6, 8}
+Y = {5}
 Output:
-X = [2, 4, 5, 6]
-Y = [8]
+X = {2, 4, 5, 6}
+Y = {8}
 
 TC5: Mảng có chứa số âm
 Input:
-X = [-5, -1, 4, 7]
-Y = [-3, 2, 6]
+X = {-5, -1, 4, 7}
+Y = {-3, 2, 6}
 Output:
-X = [-5, -3, -1, 2]
-Y = [4, 6, 7]
+X = {-5, -3, -1, 2}
+Y = {4, 6, 7}
+
+## Ex18. Move all zeros present in an array to the end
+Given an integer array, move all zeros present in it to the end. The solution should maintain the relative order of items in the array and should not use constant space.
+For example,
+Input:  { 6, 0, 8, 2, 3, 0, 4, 0, 1 } 
+Output: { 6, 8, 2, 3, 4, 1, 0, 0, 0 }
+
+1. Ý tưởng
+- Ban đầu, tôi nghĩ đến việc dùng 2 con trỏ đầu và cuối duyệt ngược chiều với chốt 0 giống như Quick Sort, nhưng để giữ nguyên trật tự các phần tử không phải 0 thì phải dịch k phần tử giữa 0 đầu và 0 cuối, độ phức tạp sẽ khá lớn.
+- Để giải quyết bài toán, ta có thể đổi vị trí **số 0 đầu tiên** của mảng với **số khác 0 đầu tiên tính từ số 0 đó**, điều này đảm bảo vẫn giữ nguyên trật tự các số khác 0, mà không phải đổi chỗ nhiều lần.
+- Để làm được điều này, cần 2 chỉ số vị trí, 1 để chỉ vị trí số 0 đầu tiên, 1 để duyệt, 2 chỉ số duyệt cùng chiều. Giả sử i là chỉ số phần tử hiện tại, z là chỉ số vị trí 0 đầu tiên:
+    + Nếu A[i] != 0 -> đổi chỗ A[i] và A[z] -> tăng z cùng với i
+    + Nếu A[i] = 0 -> giữ nguyên, không tăng z vì khi này z đag chỉ vào vị trí 0 đầu tiên -> tăng i
+
+2. Test cases
+TC1:
+Input:
+A = {6, 0, 8, 2, 3, 0, 4, 0, 1}
+Output:
+A = {6, 8, 2, 3, 4, 1, 0, 0, 0}
+
+TC2:
+Input:
+A = {1, 2, 3, 0, 0, 0}
+Output:
+A = {1, 2, 3, 0, 0, 0}
+
+TC3:
+Input:
+A = {0, 0, 0, 1, 2, 3}
+Output:
+A = {1, 2, 3, 0, 0, 0}
+
+TC4:
+Input:
+A = {1, 5, 8, 9, 2}
+Output:
+A = {1, 5, 8, 9, 2}
+
+TC5:
+Input:
+A = {0, 0, 0, 0}
+Output:
+A = {0, 0, 0, 0}
