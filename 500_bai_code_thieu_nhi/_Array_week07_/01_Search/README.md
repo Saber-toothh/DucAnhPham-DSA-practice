@@ -70,3 +70,61 @@ Output: 1
 TC6: Mảng chỉ có 1 phần tử lớn hơn 0
 Input: A = {2}
 Output: 0
+
+## Ex128. Find the peak element in an array
+Given an integer array, find the peak element in it. A peak element is an element that is greater than its neighbors. There might be multiple peak elements in an array, and the solution should report any peak element.
+
+An element A[i] of an array A is a peak element if it’s not smaller than its neighbor(s).
+
+A[i-1] <= A[i] >= A[i+1] for 0 < i < n-1
+A[i-1] <= A[i] if i = n – 1
+A[i] >= A[i+1] if i = 0
+
+For example,
+Input : [8, 9, 10, 2, 5, 6]
+Output: The peak element is 10 (or 6) 
+
+Input : [8, 9, 10, 12, 15]
+Output: The peak element is 15  
+
+1. Ý tưởng
+- Ở bài toán này, ta nhận thấy việc tìm đỉnh (peak) có những nét tương đồng với việc tìm 1 số trong 1 mảng đã được sắp xếp.
+- Cụ thể:
+   + Tìm X trong mảng đã sắp xếp A[n], nếu X < A[mid] -> chắc chắn X nằm ở nửa đầu mảng và ngược lại.
+   + Tương tự, tìm đỉnh P của A[n], nếu A[mid] < A[mid-1] -> chắc chắn tồn tại P ở nửa đầu mảng, vì ta tưởng tượng từ [mid-1] đến [mid], mảng giống như 1 đồ thị đang đi xuống; và ngược lại.
+--> Có thể ứng dụng ý tưởng của thuật toán Binary Search
+
+2. Test cases
+TC1: Mảng có 1 phần tử
+Input: A = {5}
+Output: 5
+
+TC2: Đỉnh nằm ở rìa phải
+Input: A = {1, 2, 3, 4, 5}
+Output: 5
+
+TC3: Đỉnh nằm ở rìa trái
+Input: A = {5, 4, 3, 2, 1}
+Output: 5
+
+TC4: Mảng có đỉnh nằm ở giữa
+Input: A = {1, 3, 8, 4, 2}
+Output: 8
+
+TC5: Mảng có nhiều đỉnh
+Input: A = {10, 20, 15, 2, 23, 90, 67}
+Output: 20 (hoặc 90)
+
+TC6: Mảng có tất cả các phần tử bằng nhau
+Input: A = {3, 3, 3, 3}
+Output: 3
+
+TC7: Mảng chứa các số âm
+Input: A = {-10, -5, -2, -8}
+Output: -2
+
+TC8: Mảng chỉ có 2 phần tử
+Input: A = {2, 1}
+Output: 2
+
+
