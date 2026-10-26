@@ -127,4 +127,29 @@ TC8: Mảng chỉ có 2 phần tử
 Input: A = {2, 1}
 Output: 2
 
+## Ex52. Find the odd occurring element in an array in a single traversal
+Given an integer array, duplicates are present in it in a way that all duplicates appear an even number of times except one which appears an odd number of times. Find that odd appearing element in linear time and without using any extra memory.
 
+For example,
+Input:  arr[] = [4, 3, 6, 2, 6, 4, 2, 3, 4, 3, 3] Output: The odd occurring element is 4
+
+1. Ý tưởng
+- Ở bài toán này, ta thấy có thể tận dụng tính chất của toán tử bitwise XOR để tìm nhanh phần tử lẻ mà không cần mảng phụ để đếm số lần xuất hiện.
+- Cụ thể:
+   + Tính chất 1: Hai số giống nhau khi XOR với nhau sẽ bằng 0 (x ^ x = 0). Do đó, tất cả các phần tử xuất hiện với số lần chẵn (2 lần, 4 lần...) sẽ tự triệt tiêu lẫn nhau thành 0.
+   + Tính chất 2: Một số khi XOR với 0 sẽ bằng chính nó (x ^ 0 = x).
+--> Có thể giải quyết với độ phức tạp thời gian O(n) bằng cách khởi tạo một biến result = 0, sau đó duyệt qua mảng 1 lần và XOR result liên tục với từng phần tử A[i]. Kết quả result cuối cùng chính là phần tử xuất hiện với số lần lẻ.
+
+2. Test cases
+TC1: Mảng chỉ có 1 phần tử
+Input: A = {7}
+Output: 7
+TC2: Mảng có phần tử lẻ nằm ở giữa
+Input: A = {1, 2, 1, 1, 2}
+Output: 1
+TC3: Mảng có nhiều phần tử, phần tử lẻ xuất hiện 3 lần
+Input: A = {4, 3, 6, 2, 6, 4, 2, 3, 4, 3, 3}
+Output: 4
+TC4: Mảng chứa các số âm
+Input: A = {-3, 5, -3, 5, -3}
+Output: -3
