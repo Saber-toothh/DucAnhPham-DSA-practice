@@ -148,3 +148,48 @@ Input:
 A = {0, 0, 0, 0}
 Output:
 A = {0, 0, 0, 0}
+
+## Ex 114. Inversion count of an array
+Given an array, find the total number of inversions of it. If (i < j) and (A[i] > A[j]), then pair (i, j) is called an inversion of an array A. We need to count all such pairs in the array.
+
+For example,
+Input:  A[] = [1, 9, 6, 4, 5] 
+Output: 5
+( There are 5 inversions in the array: (9, 6), (9, 4), (9, 5), (6, 4), (6, 5) )
+
+1. Ý tưởng
+- Có thể thấy, dễ dàng giải quyết bài toán bằng cách dùng 2 vòng lặp for, duyệt từng phần tử, với độ phức tạp O(n^2)
+- Tuy nhiên, ta có thể tận dụng Merge Sort để giải quyết bài toán với O(nlogn) với ý tưởng như sau:
+    + Giả sử tách mảng ban đầu A[m+n] thành 2 mảng L[m] và R[n]
+    + Dùng đệ quy, ta được 2 mảng đã được sắp xếp là L[m] với biến chạy là i và R[n] với biến chạy là j.
+    + Khi trộn 2 mảng này, nếu L[i] > R[j] thì hiển nhiên mỗi phần tử từ L[i+1] đến L[m] cũng đều lớn hơn R[j]. Từ đây, ta có thể tính toán nhanh số cặp đảo ngược đối với R[j] mà không cần so sánh từng phần tử của L[i] với với R[j].
+        Cụ thể: Số cặp đảo ngược dối với R[j] = m - i + 1
+    + Làm điều này với từng phần tử của R[n], ta sẽ có kết quả cần tìm.
+    + Lưu ý rằng, việc sắp xếp các phần tử của 2 mảng trước khi so sánh sẽ không làm ảnh hưởng đến kết quả, vì Merge Sort chọn điểm chia là điểm giữa, đảm bảo tất cả các phần tử mảng bên trái đều nằm trước các phần tử mảng bên phải ở mảng ban đầu.
+
+2. Test cases
+TC1: Mảng sắp xếp tăng dần
+Input: A = {1, 2, 3, 4, 5}
+Output: 0
+
+TC2: Mảng sắp xếp giảm dần 
+Input: A = {5, 4, 3, 2, 1}
+Output: 10
+(Các cặp số nghịch là (5,4), (5,3), (5,2), (5,1), (4,3), (4,2), (4,1), (3,2), (3,1), (2,1))
+
+TC3: 
+Input: A = {1, 9, 6, 4, 5}
+Output: 5
+
+TC4: Mảng chứa các phần tử trùng lặp
+Input: A = {2, 2, 1, 1}
+Output: 4
+
+TC5:
+Input: A = {7, 7, 7, 7}
+Output: 0
+
+TC6:
+Input: A = {10}
+Output: 0
+
