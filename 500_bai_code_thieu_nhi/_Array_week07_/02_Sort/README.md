@@ -193,3 +193,46 @@ TC6:
 Input: A = {10}
 Output: 0
 
+## Ex 115. Segregate positive and negative integers in linear time
+Given an array of positive and negative integers, segregate them in linear time and constant space. The output should print all negative numbers, followed by all positive numbers.
+
+For example,
+Input:  [9, -3, 5, -2, -8, -6, 1, 3]
+Output: [-3, -2, -8, -6, 5, 9, 1, 3]
+
+1. Ý tưởng
+- Nhìn vào bài toán, ta thấy có thể dùng thuật toán giống với Quick Sort, với 0 là pivot.
+- Khi đó, ta có thể xếp phần số âm (<0) ở phía trước pivot, và số dương sau pivot, chỉ khác là pivot ở đây không nằm trong mảng.
+
+2. Test cases
+TC1: 
+Input: A = {9, -3, 5, -2, -8, -6, 1, 3}
+Output: {-3, -2, -8, -6, 9, 5, 1, 3}
+
+TC2: Mảng toàn số dương
+Input: A = {5, 2, 9, 1, 7}
+Output: {5, 2, 9, 1, 7}
+
+TC3: Mảng toàn số âm
+Input: A = {-4, -7, -1, -3, -10}
+Output: {-4, -7, -1, -3, -10}
+
+TC4: Best case
+Input: A = {-5, -2, -9, 1, 6, 8}
+Output: {-5, -2, -9, 1, 6, 8}
+
+TC5:
+Input: A = {1, -2, 3, -4, 5, -6}
+Output: {-2, -4, -6, 1, 3, 5}
+
+TC6: Mảng có chứa số 0
+Input: A = {0, -1, 2, -3, 0, -5}
+Output: {-1, -3, -5, 0, 2, 0}
+
+TC7:
+Input: A = {-10}
+Output: {-10}
+
+TC8: 
+Input: A = {10}
+Output: {10}
