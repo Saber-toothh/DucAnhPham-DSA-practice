@@ -12,6 +12,12 @@ Output: Not found
 1. Ý tưởng
 - Sử dụng Binary Search, ta có thể tìm được index của 1 target. Lấy đó làm chốt, ta duyệt dần sang hai bên. Duyệt sang trái đến khi gặp được phần tử nhỏ ơn, ta có thể biết first occurrence; tương tự với duyệt sang phải.
 
+***Updated***:
+- Có 1 vấn đề với cách làm trên đó là, việc duyệt dần sang 2 bên với vòng lặp sẽ có độ phức tạp là O(n) trong trường hợp xấu nhất (toàn bộ phần tử của mảng giống nhau -> duyệt hết)
+- Thay vào đó, ta có thể tận dụng O(logn) của Binary Search cho toàn bộ quá trình như sau:
+  + Vẫn lưu index của lần tìm trước làm chốt, ví dụ dùng biến k
+  + Nếu tìm first occurence thì chuyển về tìm nửa trước, last occurence thì tìm nửa sau bằng Binary Search
+
 2. Test cases
 
 - TC1: Input: A = {1, 2, 2, 2, 2, 3, 4}, target = 2
